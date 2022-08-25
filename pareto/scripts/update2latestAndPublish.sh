@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+generation=$1
 
 scriptDir=`realpath $(dirname "$0")`
 rootDir="$scriptDir/../.."
@@ -10,4 +11,4 @@ git diff --exit-code && git log origin/master..master --exit-code && \
 "$scriptDir/update2latestDependencies.sh" && \
 "$scriptDir/buildAndTest.sh" && \
 git commit -am "u2l" && \
-"$scriptDir/publish.sh" "$1"
+"$scriptDir/publish.sh" "$generation"

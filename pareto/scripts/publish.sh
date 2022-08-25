@@ -12,6 +12,8 @@ git diff --exit-code && git log origin/master..master --exit-code && \
 #make sure latest buildenvironment is installed
 "$scriptDir/update2latestBuildEnvironment.sh" && \
 
+"$scriptDir/clean.sh" && \
+
 #make sure latest packages are installed
 "$scriptDir/update2latestDependencies.sh" && \
 
@@ -19,22 +21,28 @@ git diff --exit-code && git log origin/master..master --exit-code && \
 "$scriptDir/buildAndTest.sh" && \
 
 #validate that everything is still committed after the update and build
-git diff --exit-code && \
+git diff --exit-code && git log origin/master..master --exit-code && \
 
 #bump version and store in variable
 pushd "$rootDir/pub" > /dev/null && \
-newVersion=$(npm version "$1") && \
-popd && \
 
-#commit package.json with new version number
-git add $rootDir && \
-git commit -m "version bumped to $newVersion" && \
+interfaceVersion=`npm pkg get interface-fingerprint` && \
+if [ $interfaceVersion == "{}" ]
+then
+    #no interface fingerprint
 
-#create a tag
-git tag -a "$newVersion" -m "$newVersion" && \
-git push && \
+    "$scriptDir/publishIfContentChanged.sh" "minor"
 
-#publish
-pushd "$rootDir/pub" > /dev/null && \
-npm publish && \
-popd
+else
+    name=$(npm pkg get name | cut -c2- | rev | cut -c2- |rev) && \
+
+    localFingerprint=$(npm pkg get interface-fingerprint | cut -c2- | rev | cut -c2- |rev) && \
+    remoteFingerprint=$(npm view $name@latest interface-fingerprint) && \
+
+    if [ $localFingerprint != $remoteFingerprint ]
+    then
+        "$scriptDir/publishWithoutChecks.sh" "minor"
+    else
+        "$scriptDir/publishIfContentChanged.sh" "patch"
+    fi
+fi

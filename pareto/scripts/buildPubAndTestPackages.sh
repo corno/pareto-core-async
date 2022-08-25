@@ -5,7 +5,7 @@ rootDir="$scriptDir/../.."
 
 #pub
 $scriptDir/buildPackage.sh "$rootDir/pub" && \
-$scriptDir/setContentFingerprint.sh "$rootDir/pub" && \
+$scriptDir/setFingerprints.sh && \
 
 #test
 $scriptDir/buildPackage.sh "$rootDir/test" && \

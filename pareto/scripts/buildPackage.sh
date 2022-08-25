@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-if [ -d "$1" ]
+projectDir=$1
+
+if [ -d "$projectDir" ]
 then
-    rm -rf "$1/dist" && \
-    tsc -p "$1"
+    rm -rf "$projectDir/dist" && \
+    tsc -p "$projectDir"
 fi

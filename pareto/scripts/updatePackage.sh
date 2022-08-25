@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+projectType=$1
 
 scriptDir=`realpath $(dirname "$0")`
 rootDir="$scriptDir/../.."
 
-part="$rootDir/$1"
+part="$rootDir/$projectType"
 
 if [ -d "$part" ]
 then
