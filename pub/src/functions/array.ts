@@ -1,5 +1,5 @@
 import * as pt from "pareto-core-types"
-//import * as pl from "pareto-core-lib"
+import * as pr from "pareto-core-raw"
 import { createCounter } from "../internal/createCounter"
 
 export function array<T, NT>(
@@ -20,7 +20,7 @@ export function array<T, NT>(
                     })
                 },
                 () => {
-                    cb(temp)
+                    cb(pr.wrapRawArray(temp))
                 }
             )
         }

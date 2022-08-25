@@ -1,5 +1,3 @@
-//import * as pl from "pareto-core-lib"
-import * as pl from "pareto-core-lib"
 
 
 export type ICounter = {
@@ -29,7 +27,7 @@ export function createCounter(
     function wrapup() {
         if (registrationPhaseEnded && counter === 0) {
             if (onEndHasBeenCalled === true) {
-                pl.panic("already ended")
+                throw new Error("CORE: already ended")
             }
             onEndHasBeenCalled = true
             onEnd()
@@ -38,7 +36,7 @@ export function createCounter(
     callback({
         increment: () => {
             if (onEndHasBeenCalled) {
-                pl.panic("async call done after context is ready")
+                throw new Error("CORE: async call done after context is ready")
             }
             counter += 1
 

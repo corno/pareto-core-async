@@ -1,9 +1,6 @@
 {
   "author": "Corno",
   "bin": {},
-  "dependencies": {
-    "pareto-core-lib": "^0.1.0"
-  },
   "files": [
     "dist",
     "data"
@@ -23,5 +20,8 @@
   },
   "types": "dist/index.d.ts",
   "version": "0.1.0",
-  "content-fingerprint": "c3ee6f2419bc439ed3b0de360bd78c7b20f6c5a4"
+  "dependencies": {
+    "pareto-core-raw": "^0.1.0"
+  },
+  "content-fingerprint": "90a3f0feacf27e57ffecf20a4ee5769031fd03d7"
 }

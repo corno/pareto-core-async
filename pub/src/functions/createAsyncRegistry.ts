@@ -1,5 +1,4 @@
 import * as pa from "pareto-core-types"
-import * as pl from "pareto-core-lib"
 import { AsyncRegistry } from "../types/AsyncRegistry"
 
 export function createAsyncRegistry(
@@ -12,7 +11,7 @@ export function createAsyncRegistry(
             callback({
                 register: ($) => {
                     if (done) {
-                        pl.panic("UNEXPECTED REGISTER AFTER DONE")
+                        throw new Error("UNEXPECTED REGISTER AFTER DONE")
                     }
                     counter += 1
                     $.execute(() => {
