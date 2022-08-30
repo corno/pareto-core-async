@@ -1,5 +1,5 @@
 import * as pt from "pareto-core-types"
-import * as pr from "pareto-core-raw"
+import * as pr from "pareto-core-internals"
 import { createCounter } from "../internal/createCounter"
 
 export function dictionary<T, NT>(
