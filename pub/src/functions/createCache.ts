@@ -1,3 +1,4 @@
+import * as pi from "pareto-core-internals"
 import * as pt from "pareto-core-types"
 import { Cache } from "../types/Cache"
 
@@ -12,8 +13,8 @@ export function createCache<T>(
     } = {}
     return {
         getEntry: (key) => {
-            return {
-                execute: (cb) => {
+            return pi.wrapAsyncValueImp( {
+                _execute: (cb) => {
                     if (resolved[key] !== undefined) {
                         //console.log("\tresolved")
                         cb(resolved[key])
@@ -30,7 +31,7 @@ export function createCache<T>(
                             resolving[key] = {
                                 callbacks
                             }
-                            x.execute((v) => {
+                            x._execute((v) => {
                                 callbacks.forEach(($) => {
                                     $(v)
                                 })
@@ -40,7 +41,7 @@ export function createCache<T>(
                         }
                     }
                 }
-            }
+            })
         }
     }
 }
