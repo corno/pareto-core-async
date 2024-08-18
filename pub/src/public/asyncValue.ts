@@ -1,7 +1,19 @@
+import * as pt from "pareto-core-types"
 import * as pi from "pareto-core-internals"
 
+import { AsyncValue } from "pareto-core-types"
+
 /**
- * returns a {@link pi.AsyncValue}
- * @param execute the function that produces the eventual value
+ * converts a regular value in a {@link AsyncValue}
+ * @param $ the value
+ * @returns 
  */
-export const asyncValue = pi.wrapAsyncValueImp
+export function asyncValue<T>(
+    $: T
+): pt.AsyncValue<T> {
+    return pi.wrapAsyncValueImp(
+        ($c) => {
+            $c($)
+        }
+    )
+}
