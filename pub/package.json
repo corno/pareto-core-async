@@ -1,25 +1,28 @@
 {
+  "name": "pareto-core-async",
+  "version": "0.13.1",
+  "license": "ISC",
+  "description": "",
   "author": "Corno",
-  "bin": {},
-  "files": [
-    "dist"
-  ],
-  "keywords": [],
-  "main": "./dist/index.js",
+
+  "keywords": [ "pareto", "async" ],
+  "homepage": "https://github.com/corno/pareto-core#readme",
   "bugs": {
     "url": "https://github.com/corno/pareto-core/issues"
   },
-  "description": "",
-  "homepage": "https://github.com/corno/pareto-core#readme",
-  "license": "ISC",
-  "name": "pareto-core-async",
+
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+
+  "dependencies": {
+    "pareto-core-internals": "^0.21.0"
+  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/corno/pareto-core-async.git"
-  },
-  "types": "dist/index.d.ts",
-  "version": "0.13.1",
-  "dependencies": {
-    "pareto-core-internals": "^0.19.2"
   }
 }
