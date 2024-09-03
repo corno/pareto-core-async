@@ -2,7 +2,7 @@
   "name": "pareto-core-async",
   "version": "0.14.1",
   "license": "ISC",
-  "description": "",
+  "description": "this is one of the core packages of Pareto. It provides functionality for handling asynchronous data",
   "author": "Corno",
   "keywords": [
     "pareto",
